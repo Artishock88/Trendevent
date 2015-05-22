@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="start|top"
+    android:id="@+id/block_layout"
+    android:paddingBottom="10dp"
+    android:elevation="2dp"
+    android:clickable="true">
+
+    <ImageButton
+        android:layout_width="fill_parent"
+        android:layout_height="250dp"
+        android:id="@+id/banner"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="#000000"
+        android:scaleType="centerCrop"
+        android:clickable="false" />
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/banner"
+        android:background="@color/main_green"
+        android:id="@+id/relativeLayout"
+        android:clickable="false">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/block_title"
+            android:textStyle="bold"
+            android:textColor="@color/text_white"
+            android:text="Interactive Storytelling"
+            android:textSize="25dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="70dp"
+            android:layout_marginBottom="5dp"
+            android:maxWidth="250dp" />
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/block_inhalt"
+        android:layout_below="@id/block_title"
+        android:textSize="20dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="5dp"
+            android:layout_marginLeft="15dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/block_referent"
+            android:layout_below="@id/block_inhalt"
+            android:textSize="20dp"
+            android:textStyle="italic"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="15dp" />
+
+    </RelativeLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/block_pic"
+        android:layout_above="@+id/relativeLayout"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="-40dp"
+        android:layout_marginRight="15dp"
+        android:src="@raw/arti_c"
+        android:elevation="4dp" />
+
+</RelativeLayout>

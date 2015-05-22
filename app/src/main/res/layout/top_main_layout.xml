@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/main_bg">
+    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="250dp"
+                    android:id="@+id/banner"
+                    android:elevation="4dp"
+                    android:scaleType="centerCrop"
+                    android:layout_alignParentStart="true"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:minHeight="70dp"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/banner"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/title_linear"
+                    android:elevation="2dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="lade..."
+                        android:layout_weight="1">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/title"
+                            android:text="lade..."
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/text_white"
+                            android:paddingLeft="5dp"
+                            android:paddingTop="5dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="lade..."
+                            android:id="@+id/teaser"
+                            android:textColor="@color/main_green"
+                            android:layout_below="@id/title"
+                            android:layout_alignParentStart="true"
+                            android:paddingStart="5dp"
+                            android:layout_marginTop="0dp"
+                            android:layout_marginBottom="0dp"
+                            android:textSize="15dp" />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/name_wrap"
+                            android:layout_below="@id/teaser"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/ref"
+                                android:textColor="@color/text_white"
+                                android:text="Referent: "
+                                android:paddingStart="5dp"
+                                android:layout_marginTop="0dp"
+                                android:textSize="15dp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/main_green"
+                                android:id="@+id/name"
+                                android:text="lade..."
+                                android:textSize="15dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/firm_wrap"
+                            android:layout_below="@id/name_wrap"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/firm_title"
+                                android:textColor="@color/text_white"
+                                android:textStyle="italic"
+                                android:text="lade..."
+                                android:paddingStart="5dp"
+                                android:layout_marginTop="0dp"
+                                android:textSize="15dp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/text_white"
+                                android:textStyle="italic"
+                                android:id="@+id/firmname"
+                                android:text="lade..."
+                                android:textSize="15dp" />
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:id="@+id/ref_pic"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="5dp"
+                        android:elevation="4dp"
+                        android:layout_marginLeft="5dp"
+                        android:src="@raw/arti_c" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="150dp"
+                    android:layout_below="@id/title_linear"
+                    android:layout_alignParentStart="true"
+                    android:background="#ffffff"
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/trend_o_meter"
+                    android:elevation="2dp">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Trend-O-Meter"
+                        android:id="@+id/textView4"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:paddingBottom="5dp" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/mtext_wrap"
+                    android:layout_below="@id/trend_o_meter"
+                    android:elevation="2dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/stext"
+                        android:textColor="@color/main_green"
+                        android:textStyle="bold"
+                        android:text="lade..."
+                        android:paddingTop="5dp"
+                        android:paddingStart="5dp"
+
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:id="@+id/mtext"
+                        android:textColor="@color/text_white"
+                        android:layout_below="@+id/stext"
+                        android:layout_centerHorizontal="true"
+                        android:paddingTop="0dp"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
+                        android:layout_marginTop="0dp"
+                        android:textSize="15dp" />
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+
+        
+        </ScrollView>
+
+
+
+
+</RelativeLayout>

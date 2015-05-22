@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!--<item name="" type="color"></item>-->
+    <item name="main_bg" type="color">#212121</item>
+    <item name="main_green" type="color">#4caf50</item>
+    <item name="text_white" type="color">#ffffff</item>
+    <item name="bg" type="color">#424242</item>
+    
+</resources>
