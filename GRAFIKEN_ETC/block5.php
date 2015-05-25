@@ -5,6 +5,7 @@
 	"referent": "Benjamin Viethen",
 	"upcount": "401",
 	"banner": "http://art-tokarev.de/json/story_banner.jpg",
-	"pic": "http://art-tokarev.de/json/vb.jpg"
+	"pic": "http://art-tokarev.de/json/vb.jpg",
+	"id": "7"
 }
 ]

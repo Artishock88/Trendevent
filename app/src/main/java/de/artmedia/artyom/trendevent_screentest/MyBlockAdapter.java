@@ -1,14 +1,18 @@
 package de.artmedia.artyom.trendevent_screentest;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Outline;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewOutlineProvider;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,7 +32,8 @@ public class MyBlockAdapter extends RecyclerView.Adapter<MyBlockAdapter.ViewHold
 
 
     private String mTITLE[], mCONTENT[], mNAME[], mUPCOUNT[], mBANNER[], mPIC[];
-
+    private int mID[];
+    private int id;
 
 
 
@@ -60,19 +65,24 @@ public class MyBlockAdapter extends RecyclerView.Adapter<MyBlockAdapter.ViewHold
         public void onClick(View v) {
             int usedPos = getPosition();
 
-            //HARDCODED, aendern mit entsprechender Logik
+            //Korrekten TOP auswaehlen und oeffnen
             Intent i = new Intent(context, Top_Activity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            /*Bundle bundle = new Bundle();
-            bundle.putInt("item",xxxx);
+            Bundle bundle = new Bundle();
+            id = mID[usedPos];
+            bundle.putInt("item",id);
             i.putExtras(bundle);
-             */
 
+
+            TextView loading = (TextView) v.getRootView().findViewById(R.id.lade_text);
+            loading.setVisibility(View.VISIBLE);
+            View dimmer = (View) v.getRootView().findViewById(R.id.dimmer);
+            dimmer.setVisibility(View.VISIBLE);
             contxt.startActivity(i);
         }
     }
 
-    public MyBlockAdapter(String[] title, String[] content, String[] name, String[] upcount, String[] banner, String[] pic, Context passedContext) {
+    public MyBlockAdapter(String[] title, String[] content, String[] name, String[] upcount, String[] banner, String[] pic, int[] ID, Context passedContext) {
 
         mTITLE = title;
         mCONTENT = content;
@@ -80,9 +90,9 @@ public class MyBlockAdapter extends RecyclerView.Adapter<MyBlockAdapter.ViewHold
         mUPCOUNT = upcount;
         mBANNER = banner;
         mPIC = pic;
+        mID = ID;
         this.context = passedContext;
 
-        Log.d("name_adapter",mNAME[0]);
     }
 
     @Override

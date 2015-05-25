@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/main_bg">
     
     <ScrollView
@@ -21,7 +23,7 @@
                     android:scaleType="centerCrop"
                     android:layout_alignParentStart="true"/>
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:minHeight="70dp"
                     android:orientation="horizontal"
@@ -31,11 +33,15 @@
                     android:layout_marginTop="5dp"
                     android:id="@+id/title_linear"
                     android:elevation="2dp">
+
                     <RelativeLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="245dp"
                         android:layout_height="wrap_content"
                         android:text="lade..."
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:paddingBottom="0dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -45,7 +51,8 @@
                             android:textStyle="bold"
                             android:textColor="@color/text_white"
                             android:paddingLeft="5dp"
-                            android:paddingTop="5dp"/>
+                            android:paddingTop="5dp"
+                            android:maxWidth="245dp" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -55,11 +62,11 @@
                             android:layout_below="@id/title"
                             android:layout_alignParentStart="true"
                             android:paddingStart="5dp"
-                            android:layout_marginTop="0dp"
-                            android:layout_marginBottom="0dp"
-                            android:textSize="15dp" />
-                        <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:lineSpacingMultiplier="1.2"
+                            android:textSize="15dp"
+                            android:maxWidth="245dp" />
+                        <RelativeLayout
+                            android:layout_width="245dp"
                             android:layout_height="wrap_content"
                             android:id="@+id/name_wrap"
                             android:layout_below="@id/teaser"
@@ -72,18 +79,23 @@
                                 android:text="Referent: "
                                 android:paddingStart="5dp"
                                 android:layout_marginTop="0dp"
-                                android:textSize="15dp" />
+                                android:textSize="15dp"
+                                android:layout_alignParentLeft="true"
+                                android:layout_marginLeft="0dp"
+                                android:layout_alignParentTop="true" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/main_green"
                                 android:id="@+id/name"
                                 android:text="lade..."
-                                android:textSize="15dp" />
-                        </LinearLayout>
+                                android:textSize="15dp"
+                                android:layout_alignParentTop="true"
+                                android:layout_toEndOf="@+id/ref" />
+                        </RelativeLayout>
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
+                        <RelativeLayout
+                            android:layout_width="245dp"
                             android:layout_height="wrap_content"
                             android:id="@+id/firm_wrap"
                             android:layout_below="@id/name_wrap"
@@ -97,7 +109,10 @@
                                 android:text="lade..."
                                 android:paddingStart="5dp"
                                 android:layout_marginTop="0dp"
-                                android:textSize="15dp" />
+                                android:textSize="15dp"
+                                android:layout_alignParentLeft="true"
+                                android:layout_marginLeft="0dp"
+                                android:layout_alignParentTop="true" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -105,23 +120,44 @@
                                 android:textStyle="italic"
                                 android:id="@+id/firmname"
                                 android:text="lade..."
-                                android:textSize="15dp" />
-                        </LinearLayout>
+                                android:textSize="15dp"
+                                android:paddingStart="5dp"
+                                android:layout_below="@id/firm_title" />
+                        </RelativeLayout>
 
                     </RelativeLayout>
+
+                    <View
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:id="@+id/ref_pic_underlay"
+                        android:layout_gravity="center_vertical"
+                        android:elevation="5dp"
+                        android:background="@drawable/round_bg"
+                        android:layout_alignParentLeft="false"
+                        android:layout_alignParentTop="false"
+                        android:layout_alignParentEnd="false"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="15dp"
+                        android:outlineProvider="background"/>
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:id="@+id/ref_pic"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginRight="5dp"
-                        android:elevation="4dp"
-                        android:layout_marginLeft="5dp"
-                        android:src="@raw/arti_c" />
+                        android:elevation="6dp"
+                        android:src="@raw/arti_c"
+                        android:layout_alignParentLeft="false"
+                        android:layout_alignParentTop="false"
+                        android:layout_alignParentEnd="false"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="15dp" />
 
 
-                </LinearLayout>
+                </RelativeLayout>
 
                 <LinearLayout
                     android:orientation="horizontal"
@@ -163,8 +199,8 @@
                         android:text="lade..."
                         android:paddingTop="5dp"
                         android:paddingStart="5dp"
-
-                        android:textSize="15dp" />
+                        android:textSize="15dp"
+                        android:lineSpacingMultiplier="1.2"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -178,7 +214,9 @@
                         android:paddingStart="5dp"
                         android:paddingEnd="5dp"
                         android:layout_marginTop="0dp"
-                        android:textSize="15dp" />
+                        android:textSize="15dp"
+                        android:lineSpacingMultiplier="1.2"
+                        android:paddingBottom="90dp" />
 
                 </RelativeLayout>
 

@@ -2,9 +2,16 @@
 <resources>
     
     <!--<item name="" type="color"></item>-->
+    <item name="main_color" type="color">#8bc34a</item>
+    <item name="secondary_color" type="color">#689f38</item>
+    <item name="accent_color" type="color">#ccff90</item>
     <item name="main_bg" type="color">#212121</item>
-    <item name="main_green" type="color">#4caf50</item>
+    <item name="main_green" type="color">#8bc34a</item>
+    <item name="light_green" type="color">#aed581</item>
     <item name="text_white" type="color">#ffffff</item>
     <item name="bg" type="color">#424242</item>
+    <item name="live_light_blue" type="color">#03a9f4</item>
+    <item name="pending_blue" type="color">#4fc3f7</item>
+    <item name="grey" type="color">#9e9e9e</item>
     
 </resources>

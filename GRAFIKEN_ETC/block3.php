@@ -5,7 +5,8 @@
 	"referent": "Christian Klose",
 	"upcount": "357",
 	"banner": "http://art-tokarev.de/json/design_banner.jpg",
-	"pic": "http://art-tokarev.de/json/ck.jpg"
+	"pic": "http://art-tokarev.de/json/ck.jpg",
+	"id": "3"
 },
 
 {
@@ -14,6 +15,7 @@
 	"referent": "Hans-Joachim Gras",
 	"upcount": "360",
 	"banner": "http://art-tokarev.de/json/claim_banner.jpg",
-	"pic": "http://art-tokarev.de/json/hg.jpg"
+	"pic": "http://art-tokarev.de/json/hg.jpg",
+	"id": "4"
 }
 ]

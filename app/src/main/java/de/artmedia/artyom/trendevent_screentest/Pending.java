@@ -7,6 +7,7 @@ import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,7 @@ import java.io.IOException;
  */
 public class Pending extends Fragment implements View.OnClickListener{
     private TextView lade_text;
+    private View dimmer;
 
     //Arrays fuer den Adapter
     String TITLE[];
@@ -38,6 +40,7 @@ public class Pending extends Fragment implements View.OnClickListener{
     String UPCOUNT[];
     String BANNER[];
     String PIC[];
+    int ID[];
 
     int position;
 
@@ -52,9 +55,10 @@ public class Pending extends Fragment implements View.OnClickListener{
     {
         View view = inflater.inflate(R.layout.pending_layout, container, false);
 
-        lade_text = (TextView) view.findViewById(R.id.lade_text);
+        lade_text = (TextView) getActivity().findViewById(R.id.lade_text);
+        dimmer = (View) getActivity().findViewById(R.id.dimmer);
         lade_text.setVisibility(View.GONE);
-
+        dimmer.setVisibility(View.GONE);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -89,6 +93,7 @@ public class Pending extends Fragment implements View.OnClickListener{
             UPCOUNT = new String[position];
             BANNER = new String[position];
             PIC = new String[position];
+            ID = new int[position];
 
 
             for (int i=0; i<position; i++)
@@ -99,6 +104,7 @@ public class Pending extends Fragment implements View.OnClickListener{
                 NAME[i] = json.getString("referent");
                 BANNER[i] = json.getString("banner");
                 PIC[i] = json.getString("pic");
+                ID[i] = json.getInt("id");
             }
 
         } catch (JSONException e) {
@@ -112,7 +118,7 @@ public class Pending extends Fragment implements View.OnClickListener{
         //Setup der TOP-Liste
         mBlockView = (RecyclerView) view.findViewById(R.id.block_live);
         mBlockView.setHasFixedSize(true);
-        mBlockAdapter = new MyPendingAdapter(TITLE,CONTENT,NAME,BANNER,PIC,context);
+        mBlockAdapter = new MyPendingAdapter(TITLE,CONTENT,NAME,BANNER,PIC,ID,context);
         mBlockView.setAdapter(mBlockAdapter);
         mBlockLayoutManager = new LinearLayoutManager(context);
         mBlockView.setLayoutManager(mBlockLayoutManager);
@@ -127,6 +133,7 @@ public class Pending extends Fragment implements View.OnClickListener{
     {
         super.onStop();
         lade_text.setVisibility(View.GONE);
+        dimmer.setVisibility(View.GONE);
     }
 
     @Override

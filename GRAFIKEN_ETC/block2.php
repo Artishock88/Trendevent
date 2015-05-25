@@ -5,6 +5,7 @@
 	"referent": "Marco Bergmann",
 	"upcount": "360",
 	"banner": "http://art-tokarev.de/json/cinema_banner.jpg",
-	"pic": "http://art-tokarev.de/json/mb.jpg"
+	"pic": "http://art-tokarev.de/json/mb.jpg",
+	"id": "2"
 }
 ]

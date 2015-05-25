@@ -35,6 +35,7 @@ import java.io.IOException;
 public class LiveNow extends Fragment{
 
     private TextView lade_text;
+    private View dimmer;
 
     //Arrays fuer den Adapter
     String TITLE[];
@@ -43,6 +44,7 @@ public class LiveNow extends Fragment{
     String UPCOUNT[];
     String BANNER[];
     String PIC[];
+    int ID[];
 
     int position;
 
@@ -57,8 +59,10 @@ public class LiveNow extends Fragment{
     {
         View view = inflater.inflate(R.layout.live_now_layout, container, false);
 
-        lade_text = (TextView) view.findViewById(R.id.lade_text);
+        lade_text = (TextView) getActivity().findViewById(R.id.lade_text);
+        dimmer = (View) getActivity().findViewById(R.id.dimmer);
         lade_text.setVisibility(View.GONE);
+        dimmer.setVisibility(View.GONE);
 
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -94,6 +98,7 @@ public class LiveNow extends Fragment{
             UPCOUNT = new String[position];
             BANNER = new String[position];
             PIC = new String[position];
+            ID = new int[position];
 
 
             for (int i=0; i<position; i++)
@@ -105,6 +110,7 @@ public class LiveNow extends Fragment{
                 UPCOUNT[i] = json.getString("upcount");
                 BANNER[i] = json.getString("banner");
                 PIC[i] = json.getString("pic");
+                ID[i] = json.getInt("id");
             }
 
         } catch (JSONException e) {
@@ -118,7 +124,7 @@ public class LiveNow extends Fragment{
         //Setup der TOP-Liste
         mBlockView = (RecyclerView) view.findViewById(R.id.block_live);
         mBlockView.setHasFixedSize(true);
-        mBlockAdapter = new MyBlockAdapter(TITLE,CONTENT,NAME,UPCOUNT,BANNER,PIC,context);
+        mBlockAdapter = new MyBlockAdapter(TITLE,CONTENT,NAME,UPCOUNT,BANNER,PIC,ID,context);
         mBlockView.setAdapter(mBlockAdapter);
         mBlockLayoutManager = new LinearLayoutManager(context);
         mBlockView.setLayoutManager(mBlockLayoutManager);
@@ -133,5 +139,6 @@ public class LiveNow extends Fragment{
     {
         super.onStop();
         lade_text.setVisibility(View.GONE);
+        dimmer.setVisibility(View.GONE);
     }
 }

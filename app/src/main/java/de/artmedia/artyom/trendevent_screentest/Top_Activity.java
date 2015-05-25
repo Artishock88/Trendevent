@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -39,6 +40,10 @@ public class Top_Activity extends Activity {
     ImageView ref_image_v;
     TextView stext_v;
     TextView mtext_v;
+    private String stringID;
+    private int id;
+    private int useId;
+    private int jsonId;
 
     public void onCreate(Bundle savedInstanceState)
     {
@@ -53,6 +58,8 @@ public class Top_Activity extends Activity {
         HttpResponse response;
         HttpClient myClient = new DefaultHttpClient();
         HttpPost myConnection = new HttpPost("http://art-tokarev.de/json/top1.php");
+
+        id = this.getIntent().getExtras().getInt("item");
 
         try {
             response = myClient.execute(myConnection);
@@ -79,7 +86,17 @@ public class Top_Activity extends Activity {
 
         try {
             JSONArray jArray = new JSONArray(str);
-            json = jArray.getJSONObject(2);
+
+            for (int i=0; i<jArray.length(); i++)
+            {
+                json = jArray.getJSONObject(i);
+                jsonId = json.getInt("id");
+                if(jsonId==id){
+                useId = i;}
+            }
+
+
+            json = jArray.getJSONObject(useId);
 
             title_v.setText(json.getString("title"));
             teaser_v.setText(json.getString("teaser"));

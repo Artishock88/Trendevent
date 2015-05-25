@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,6 +29,8 @@ public class MyPendingAdapter extends RecyclerView.Adapter<MyPendingAdapter.View
 
 
     private String mTITLE[], mCONTENT[], mNAME[], mBANNER[], mPIC[];
+    private int mID[];
+    private int id;
 
 
 
@@ -59,28 +62,34 @@ public class MyPendingAdapter extends RecyclerView.Adapter<MyPendingAdapter.View
         public void onClick(View v) {
             int usedPos = getPosition();
 
-            //HARDCODED, aendern mit entsprechender Logik
+            //Korrekten TOP auswaehlen und oeffnen
             Intent i = new Intent(context, Top_Activity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            /*Bundle bundle = new Bundle();
-            bundle.putInt("item",xxxx);
+
+            Bundle bundle = new Bundle();
+            id = mID[usedPos];
+            bundle.putInt("item", id);
             i.putExtras(bundle);
-             */
+
+            TextView ploading = (TextView) v.getRootView().findViewById(R.id.lade_text);
+            ploading.setVisibility(View.VISIBLE);
+            View dimmer = (View) v.getRootView().findViewById(R.id.dimmer);
+            dimmer.setVisibility(View.VISIBLE);
 
             contxt.startActivity(i);
         }
     }
 
-    public MyPendingAdapter(String[] title, String[] content, String[] name, String[] banner, String[] pic, Context passedContext) {
+    public MyPendingAdapter(String[] title, String[] content, String[] name, String[] banner, String[] pic, int[] ID, Context passedContext) {
 
         mTITLE = title;
         mCONTENT = content;
         mNAME = name;
         mBANNER = banner;
         mPIC = pic;
-        this.context = passedContext;
+        mID = ID;
 
-        Log.d("name_adapter",mNAME[0]);
+        this.context = passedContext;
     }
 
     @Override
