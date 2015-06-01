@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -25,22 +26,16 @@ public class MyPendingAdapter extends RecyclerView.Adapter<MyPendingAdapter.View
 
     private final Context context;
 
-
-
-
     private String mTITLE[], mCONTENT[], mNAME[], mBANNER[], mPIC[];
     private int mID[];
     private int id;
 
-
-
-
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         Context contxt;
-
         ImageView block_pic;
         ImageButton block_banner;
+
         TextView block_title, block_content, block_name, lade_text;
 
         public ViewHolder(View itemView, int viewType, Context c) {
@@ -129,7 +124,86 @@ public class MyPendingAdapter extends RecyclerView.Adapter<MyPendingAdapter.View
             e.printStackTrace();
         }
 
+        //new downloadImagesBanner().execute(mBANNER[position]);
+        //new downloadImagesPic().execute(mPIC[position]);
+
     }
+/*
+    private class downloadImagesBanner extends AsyncTask<String, Void, Bitmap>
+    {
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Bitmap doInBackground(String... urls) {
+            String banner = urls[0];
+            Bitmap bmp_banner = null;
+
+            URL bannerUrl = null;
+            try{
+                bannerUrl = new URL(banner);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                bmp_banner = BitmapFactory.decodeStream(bannerUrl.openConnection().getInputStream());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return bmp_banner;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap banner){
+            if (banner != null)
+            {
+                MyPendingAdapter.block_banner.setImageBitmap(banner);
+            }
+        }
+    }
+
+    private class downloadImagesPic extends AsyncTask<String, Void, Bitmap>
+    {
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Bitmap doInBackground(String... urls) {
+            String pic = urls[0];
+            Bitmap bmp_pic = null;
+
+            URL picUrl = null;
+            try{
+                picUrl = new URL(pic);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                bmp_pic = BitmapFactory.decodeStream(picUrl.openConnection().getInputStream());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return bmp_pic;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap pic){
+            if (pic != null)
+            {
+                MyPendingAdapter.block_pic.setImageBitmap(pic);
+            }
+        }
+    }*/
 
     @Override
     public int getItemCount() {

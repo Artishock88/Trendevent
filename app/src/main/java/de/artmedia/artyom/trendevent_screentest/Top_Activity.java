@@ -3,6 +3,7 @@ package de.artmedia.artyom.trendevent_screentest;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
@@ -40,24 +41,24 @@ public class Top_Activity extends Activity {
     ImageView ref_image_v;
     TextView stext_v;
     TextView mtext_v;
+    ProgressBar banner_bar;
     private String stringID;
     private int id;
     private int useId;
     private int jsonId;
+    JSONObject json;
 
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.top_main_layout);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        JSONObject json;
         String str = "";
         HttpResponse response;
         HttpClient myClient = new DefaultHttpClient();
-        HttpPost myConnection = new HttpPost("http://art-tokarev.de/json/top1.php");
+        HttpPost myConnection = new HttpPost("http://art-tokarev.de/json/contao/top1.php");
 
         id = this.getIntent().getExtras().getInt("item");
 
@@ -83,6 +84,9 @@ public class Top_Activity extends Activity {
         ref_image_v = (ImageView) findViewById(R.id.ref_pic);
         stext_v = (TextView) findViewById(R.id.stext);
         mtext_v = (TextView) findViewById(R.id.mtext);
+        banner_bar = (ProgressBar) findViewById(R.id.top_banner_progress);
+
+        banner_bar.setVisibility(View.GONE);
 
         try {
             JSONArray jArray = new JSONArray(str);
@@ -106,24 +110,15 @@ public class Top_Activity extends Activity {
             stext_v.setText(json.getString("stext"));
             mtext_v.setText(json.getString("mtext"));
 
-            //download Banner
-            URL bannerUrl = new URL(json.getString("banner"));
-            Bitmap bmp_banner = BitmapFactory.decodeStream(bannerUrl.openConnection().getInputStream());
-            banner_v.setImageBitmap(bmp_banner);
 
-            //download Referentenbild
-            URL refUrl = new URL(json.getString("pic"));
-            Bitmap bmp_ref = BitmapFactory.decodeStream(refUrl.openConnection().getInputStream());
-            ref_image_v.setImageBitmap(bmp_ref);
+            new downloadImagesBanner().execute(json.getString("banner"));
+            new downloadImagesPic().execute(json.getString("pic"));
 
 
         } catch (JSONException e) {
             e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+
 
     }
 
@@ -143,4 +138,75 @@ public class Top_Activity extends Activity {
         System.gc();
     }
 
+
+    //Die Bilder werden im hintergrund geladen. Wenn die Internetverbindung langsam ist, koennen die Textelemente vorher schon geladen werden.
+    private class downloadImagesBanner extends AsyncTask<String, Void, Bitmap>{
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+            banner_bar.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected Bitmap doInBackground(String... urls) {
+            String banner = urls[0];
+            Bitmap bmp_banner = null;
+
+            URL bannerUrl = null;
+            try {
+                bannerUrl = new URL(banner);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                bmp_banner = BitmapFactory.decodeStream(bannerUrl.openConnection().getInputStream());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return bmp_banner;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap banner)
+        {
+            if(banner != null)
+            {
+                banner_v.setImageBitmap(banner);
+                banner_bar.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    private class downloadImagesPic extends AsyncTask<String, Void, Bitmap>{
+        @Override
+        protected Bitmap doInBackground(String... urls) {
+            String pic = urls[0];
+            Bitmap bmp_pic = null;
+
+            URL picUrl = null;
+            try {
+                picUrl = new URL(pic);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                bmp_pic = BitmapFactory.decodeStream(picUrl.openConnection().getInputStream());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return bmp_pic;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap pic)
+        {
+            if(pic != null)
+            {
+                ref_image_v.setImageBitmap(pic);
+            }
+        }
+    }
 }

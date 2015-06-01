@@ -74,7 +74,7 @@ public class LiveNow extends Fragment{
         String urlStr = "";
         HttpResponse response;
 
-        urlStr = "http://art-tokarev.de/json/" + getArguments().getString("blockUrl");
+        urlStr = "http://art-tokarev.de/json/contao/" + getArguments().getString("blockUrl");
         HttpClient myClient = new DefaultHttpClient();
         HttpPost myConnection = new HttpPost(urlStr);
 

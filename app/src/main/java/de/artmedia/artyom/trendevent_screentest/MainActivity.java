@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
 
-    private static final int NUM_PAGES = 6;
+    private static final int NUM_PAGES = 14;
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
     private int res;
@@ -48,7 +48,7 @@ public class MainActivity extends ActionBarActivity {
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
         mPager.setCurrentItem(1);
-        mPager.setOffscreenPageLimit(4);
+        mPager.setOffscreenPageLimit(8);
 
     }
 
@@ -112,6 +112,54 @@ public class MainActivity extends ActionBarActivity {
                     Pending pending4 = new Pending();
                     pending4.setArguments(block5);
                     return pending4;
+                case (6):
+                    Bundle block6 = new Bundle();
+                    block6.putString("blockUrl", "block6.php");
+                    Pending pending5 = new Pending();
+                    pending5.setArguments(block6);
+                    return pending5;
+                case (7):
+                    Bundle block7 = new Bundle();
+                    block7.putString("blockUrl", "block7.php");
+                    Pending pending6 = new Pending();
+                    pending6.setArguments(block7);
+                    return pending6;
+                case (8):
+                    Bundle block8 = new Bundle();
+                    block8.putString("blockUrl", "block8.php");
+                    Pending pending7 = new Pending();
+                    pending7.setArguments(block8);
+                    return pending7;
+                case (9):
+                    Bundle block9 = new Bundle();
+                    block9.putString("blockUrl", "block9.php");
+                    Pending pending8 = new Pending();
+                    pending8.setArguments(block9);
+                    return pending8;
+                case (10):
+                    Bundle block10 = new Bundle();
+                    block10.putString("blockUrl", "block10.php");
+                    Pending pending9 = new Pending();
+                    pending9.setArguments(block10);
+                    return pending9;
+                case (11):
+                    Bundle block11 = new Bundle();
+                    block11.putString("blockUrl", "block11.php");
+                    Pending pending10 = new Pending();
+                    pending10.setArguments(block11);
+                    return pending10;
+                case (12):
+                    Bundle block12 = new Bundle();
+                    block12.putString("blockUrl", "block12.php");
+                    Pending pending11 = new Pending();
+                    pending11.setArguments(block12);
+                    return pending11;
+                case (13):
+                    Bundle block13 = new Bundle();
+                    block13.putString("blockUrl", "block13.php");
+                    Pending pending12 = new Pending();
+                    pending12.setArguments(block13);
+                    return pending12;
             }
             return null;
         }

@@ -1,18 +1,16 @@
 package de.artmedia.artyom.trendevent_screentest;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Outline;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewOutlineProvider;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,21 +26,17 @@ public class MyBlockAdapter extends RecyclerView.Adapter<MyBlockAdapter.ViewHold
 
     private final Context context;
 
-
-
-
     private String mTITLE[], mCONTENT[], mNAME[], mUPCOUNT[], mBANNER[], mPIC[];
     private int mID[];
     private int id;
 
-
+    private Bitmap bannerImage;
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         Context contxt;
-
-        ImageView block_pic;
         ImageButton block_banner;
+        ImageView block_pic;
         TextView block_upcount, block_title, block_content, block_name, lade_text;
 
         public ViewHolder(View itemView, int viewType, Context c) {
@@ -111,6 +105,7 @@ public class MyBlockAdapter extends RecyclerView.Adapter<MyBlockAdapter.ViewHold
         holder.block_content.setText(mCONTENT[position]);
         holder.block_name.setText(mNAME[position]);
 
+
         //Download Banner
         try {
             URL bannerUrl = new URL(mBANNER[position]);
@@ -122,7 +117,8 @@ public class MyBlockAdapter extends RecyclerView.Adapter<MyBlockAdapter.ViewHold
             e.printStackTrace();
         }
 
-        //Download Pic
+
+        /*//Download Pic
         try {
             URL picUrl = new URL(mPIC[position]);
             Bitmap bmp_pic = BitmapFactory.decodeStream(picUrl.openConnection().getInputStream());
@@ -131,9 +127,53 @@ public class MyBlockAdapter extends RecyclerView.Adapter<MyBlockAdapter.ViewHold
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
+
+
+        //new downloadImagesPic().execute(mPIC[position]);
 
     }
+
+
+
+    /*
+    private class downloadImagesPic extends AsyncTask<String, Void, Bitmap>
+    {
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Bitmap doInBackground(String... urls) {
+            String pic = urls[0];
+            Bitmap bmp_pic = null;
+
+            URL picUrl = null;
+            try{
+                picUrl = new URL(pic);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                bmp_pic = BitmapFactory.decodeStream(picUrl.openConnection().getInputStream());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return bmp_pic;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap pic){
+            if (pic != null)
+            {
+                MyBlockAdapter.block_pic.setImageBitmap(pic);
+            }
+        }
+    }*/
 
     @Override
     public int getItemCount() {
