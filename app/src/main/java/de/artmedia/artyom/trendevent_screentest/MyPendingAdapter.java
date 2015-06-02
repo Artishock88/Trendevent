@@ -15,6 +15,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -101,109 +103,11 @@ public class MyPendingAdapter extends RecyclerView.Adapter<MyPendingAdapter.View
         holder.block_title.setText(mTITLE[position]);
         holder.block_content.setText(mCONTENT[position]);
         holder.block_name.setText(mNAME[position]);
-
-        //Download Banner
-        try {
-            URL bannerUrl = new URL(mBANNER[position]);
-            Bitmap bmp_banner = BitmapFactory.decodeStream(bannerUrl.openConnection().getInputStream());
-            holder.block_banner.setImageBitmap(bmp_banner);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        //Download Pic
-        try {
-            URL picUrl = new URL(mPIC[position]);
-            Bitmap bmp_pic = BitmapFactory.decodeStream(picUrl.openConnection().getInputStream());
-            holder.block_pic.setImageBitmap(bmp_pic);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        //new downloadImagesBanner().execute(mBANNER[position]);
-        //new downloadImagesPic().execute(mPIC[position]);
+        Picasso.with(context).load(mBANNER[position]).into(holder.block_banner);
+        Picasso.with(context).load(mPIC[position]).into(holder.block_pic);
 
     }
-/*
-    private class downloadImagesBanner extends AsyncTask<String, Void, Bitmap>
-    {
-        @Override
-        protected void onPreExecute()
-        {
-            super.onPreExecute();
-        }
 
-        @Override
-        protected Bitmap doInBackground(String... urls) {
-            String banner = urls[0];
-            Bitmap bmp_banner = null;
-
-            URL bannerUrl = null;
-            try{
-                bannerUrl = new URL(banner);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-
-            try {
-                bmp_banner = BitmapFactory.decodeStream(bannerUrl.openConnection().getInputStream());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return bmp_banner;
-        }
-
-        @Override
-        protected void onPostExecute(Bitmap banner){
-            if (banner != null)
-            {
-                MyPendingAdapter.block_banner.setImageBitmap(banner);
-            }
-        }
-    }
-
-    private class downloadImagesPic extends AsyncTask<String, Void, Bitmap>
-    {
-        @Override
-        protected void onPreExecute()
-        {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected Bitmap doInBackground(String... urls) {
-            String pic = urls[0];
-            Bitmap bmp_pic = null;
-
-            URL picUrl = null;
-            try{
-                picUrl = new URL(pic);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-
-            try {
-                bmp_pic = BitmapFactory.decodeStream(picUrl.openConnection().getInputStream());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return bmp_pic;
-        }
-
-        @Override
-        protected void onPostExecute(Bitmap pic){
-            if (pic != null)
-            {
-                MyPendingAdapter.block_pic.setImageBitmap(pic);
-            }
-        }
-    }*/
 
     @Override
     public int getItemCount() {

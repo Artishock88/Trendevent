@@ -48,7 +48,7 @@ public class MainActivity extends ActionBarActivity {
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
         mPager.setCurrentItem(1);
-        mPager.setOffscreenPageLimit(8);
+        mPager.setOffscreenPageLimit(12);
 
     }
 
