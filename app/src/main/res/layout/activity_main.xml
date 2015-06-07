@@ -5,13 +5,48 @@
 <include
     android:id="@+id/toolbar"
     layout="@layout/toolbar" />
-<android.support.v4.view.ViewPager
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/test_buttons"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nachricht"
+            android:id="@+id/button"
+            android:layout_weight="1"
+            android:onClick="onNotify" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-1"
+            android:id="@+id/button2"
+            android:layout_weight="1"
+            android:onClick="onDecrease" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="reset"
+            android:id="@+id/button3"
+            android:layout_weight="1"
+            android:onClick="onReset" />
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/pager"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg"
-    android:layout_below="@id/toolbar"/>
+    android:layout_below="@id/test_buttons"/>
     <View
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -30,4 +65,5 @@
         android:textColor="@color/text_white"
         android:background="@color/main_green"
         android:elevation="8dp" />
+
 </RelativeLayout>

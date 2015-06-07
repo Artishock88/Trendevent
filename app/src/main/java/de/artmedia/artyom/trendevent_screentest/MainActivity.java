@@ -2,16 +2,20 @@ package de.artmedia.artyom.trendevent_screentest;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -20,7 +24,7 @@ import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
 
-    private static final int NUM_PAGES = 14;
+    private static int NUM_PAGES = 14;
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
     private int res;
@@ -29,6 +33,10 @@ public class MainActivity extends ActionBarActivity {
 
     private TextView lade_text;
     private View dimmer;
+
+    Archive archive;
+    LiveNow liveNow;
+    Pending pending;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +51,21 @@ public class MainActivity extends ActionBarActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        instantiatePager();
+
+    }
+
+    public void instantiatePager()
+    {
+        mPager = null;
+        mPagerAdapter = null;
+
         //Viewpager instanziieren
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
         mPager.setCurrentItem(1);
-        mPager.setOffscreenPageLimit(12);
-
+        mPager.setOffscreenPageLimit(6);
     }
 
     @Override
@@ -75,10 +91,12 @@ public class MainActivity extends ActionBarActivity {
             super(fm);
         }
 
+
         @Override
         public Fragment getItem(int position)
         {
-            switch (position)
+
+            /*switch (position)
             {
                 case (0):
                     return new Archive();
@@ -160,6 +178,34 @@ public class MainActivity extends ActionBarActivity {
                     Pending pending12 = new Pending();
                     pending12.setArguments(block13);
                     return pending12;
+            }*/
+            if (position == 0)
+            {
+                archive = null;
+                archive = new Archive();
+                return archive;
+            }
+            if (position == 1)
+            {
+                liveNow = null;
+                Bundle blockLive = new Bundle();
+                blockLive.putString("blockUrl", "block1.php");
+                liveNow = new LiveNow();
+                liveNow.setArguments(blockLive);
+                return liveNow;
+            }
+            if (position > 1) {
+                for (int i = 2; i <= NUM_PAGES; i++) {
+                    pending = null;
+                    String combineUrl;
+                    combineUrl = "block" + String.valueOf(position) + ".php";
+                    Log.d("COMBINED_URL", combineUrl);
+                    Bundle block = new Bundle();
+                    block.putString("blockUrl", combineUrl);
+                    pending = new Pending();
+                    pending.setArguments(block);
+                    return pending;
+                }
             }
             return null;
         }
@@ -168,6 +214,44 @@ public class MainActivity extends ActionBarActivity {
         public int getCount()
         {
             return NUM_PAGES;
+        }
+    }
+
+    public void onNotify(View view)
+    {
+        switch (view.getId())
+        {
+            case (R.id.button):
+                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
+                mBuilder.setSmallIcon(R.mipmap.ic_launcher);
+                mBuilder.setContentTitle("Testnotification");
+                mBuilder.setContentText("This is the Text of the testnotification");
+
+                NotificationManager mNManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                mNManager.notify(0, mBuilder.build());
+        }
+    }
+
+    public void onDecrease(View view)
+    {
+        switch (view.getId())
+        {
+            case (R.id.button2):
+
+                if(NUM_PAGES>2) {
+                    NUM_PAGES = NUM_PAGES - 1;
+                    instantiatePager();
+                }
+        }
+    }
+
+    public void onReset(View view)
+    {
+        switch (view.getId())
+        {
+            case (R.id.button3):
+                NUM_PAGES = 14;
+                instantiatePager();
         }
     }
 }

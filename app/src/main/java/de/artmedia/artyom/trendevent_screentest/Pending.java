@@ -70,6 +70,7 @@ public class Pending extends Fragment implements View.OnClickListener{
         HttpResponse response;
 
         urlStr = "http://art-tokarev.de/json/contao/" + getArguments().getString("blockUrl");
+        Log.d("STRING_IN_ADAPTER",urlStr);
         HttpClient myClient = new DefaultHttpClient();
         HttpPost myConnection = new HttpPost(urlStr);
 

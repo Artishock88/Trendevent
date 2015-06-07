@@ -32,7 +32,6 @@ public class MyBlockAdapter extends RecyclerView.Adapter<MyBlockAdapter.ViewHold
     private int mID[];
     private int id;
 
-    private Bitmap bmp_banner;
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
