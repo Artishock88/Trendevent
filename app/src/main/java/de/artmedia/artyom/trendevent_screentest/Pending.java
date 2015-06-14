@@ -69,7 +69,7 @@ public class Pending extends Fragment implements View.OnClickListener{
         String urlStr = "";
         HttpResponse response;
 
-        urlStr = "http://art-tokarev.de/json/contao/" + getArguments().getString("blockUrl");
+        urlStr = "http://art-tokarev.de/json/" + getArguments().getString("blockUrl");
         Log.d("STRING_IN_ADAPTER",urlStr);
         HttpClient myClient = new DefaultHttpClient();
         HttpPost myConnection = new HttpPost(urlStr);
@@ -100,6 +100,7 @@ public class Pending extends Fragment implements View.OnClickListener{
             for (int i=0; i<position; i++)
             {
                 json = jArray.getJSONObject(i);
+
                 TITLE[i] = json.getString("title");
                 CONTENT[i] = json.getString("content");
                 NAME[i] = json.getString("referent");
@@ -117,6 +118,9 @@ public class Pending extends Fragment implements View.OnClickListener{
 
 
         //Setup der TOP-Liste
+        mBlockView = null;
+        mBlockAdapter = null;
+
         mBlockView = (RecyclerView) view.findViewById(R.id.block_live);
         mBlockView.setHasFixedSize(true);
         mBlockAdapter = new MyPendingAdapter(TITLE,CONTENT,NAME,BANNER,PIC,ID,context);

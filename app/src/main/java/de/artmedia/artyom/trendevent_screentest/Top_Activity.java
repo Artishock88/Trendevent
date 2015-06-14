@@ -58,7 +58,7 @@ public class Top_Activity extends Activity {
         String str = "";
         HttpResponse response;
         HttpClient myClient = new DefaultHttpClient();
-        HttpPost myConnection = new HttpPost("http://art-tokarev.de/json/contao/top1.php");
+        HttpPost myConnection = new HttpPost("http://art-tokarev.de/json/top1.php");
 
         id = this.getIntent().getExtras().getInt("item");
 

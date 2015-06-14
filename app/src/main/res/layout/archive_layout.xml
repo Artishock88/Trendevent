@@ -4,23 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Archiv"
-        android:id="@+id/archivTitel"
-        android:background="@color/grey"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:gravity="center_horizontal"
-        android:elevation="4dp" />
-
     <ScrollView
 
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-        android:layout_below="@id/archivTitel">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"

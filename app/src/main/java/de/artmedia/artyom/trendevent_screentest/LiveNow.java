@@ -74,7 +74,7 @@ public class LiveNow extends Fragment{
         String urlStr = "";
         HttpResponse response;
 
-        urlStr = "http://art-tokarev.de/json/contao/" + getArguments().getString("blockUrl");
+        urlStr = "http://art-tokarev.de/json/" + getArguments().getString("blockUrl");
         HttpClient myClient = new DefaultHttpClient();
         HttpPost myConnection = new HttpPost(urlStr);
 
@@ -122,6 +122,9 @@ public class LiveNow extends Fragment{
 
 
         //Setup der TOP-Liste
+        mBlockView = null;
+        mBlockAdapter = null;
+
         mBlockView = (RecyclerView) view.findViewById(R.id.block_live);
         mBlockView.setHasFixedSize(true);
         mBlockAdapter = new MyBlockAdapter(TITLE,CONTENT,NAME,UPCOUNT,BANNER,PIC,ID,context);

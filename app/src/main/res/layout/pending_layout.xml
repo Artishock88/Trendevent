@@ -11,26 +11,13 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Pending"
-            android:id="@+id/pendingText"
-            android:background="@color/pending_blue"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:gravity="center_horizontal"
-            android:elevation="4dp" />
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/block_live"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="left"
             android:scrollbars="vertical"
-            android:layout_alignParentStart="true"
-            android:layout_below="@id/pendingText">
+            android:layout_alignParentStart="true">
 
         </android.support.v7.widget.RecyclerView>
 
