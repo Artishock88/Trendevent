@@ -1,6 +1,7 @@
 package de.artmedia.artyom.trendevent_screentest;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -12,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -31,6 +34,9 @@ import java.net.URL;
  * Created by Artyom on 16.05.2015.
  */
 public class Top_Activity extends Activity {
+
+    private Context context;
+
 
     ImageView banner_v;
     TextView title_v;
@@ -99,7 +105,6 @@ public class Top_Activity extends Activity {
                 useId = i;}
             }
 
-
             json = jArray.getJSONObject(useId);
 
             title_v.setText(json.getString("title"));
@@ -111,8 +116,10 @@ public class Top_Activity extends Activity {
             mtext_v.setText(json.getString("mtext"));
 
 
-            new downloadImagesBanner().execute(json.getString("banner"));
-            new downloadImagesPic().execute(json.getString("pic"));
+            //new downloadImagesBanner().execute(json.getString("banner"));
+            //new downloadImagesPic().execute(json.getString("pic"));
+            Picasso.with(context).load(json.getString("banner")).into(banner_v);
+            Picasso.with(context).load(json.getString("pic")).into(ref_image_v);
 
 
         } catch (JSONException e) {
@@ -122,10 +129,17 @@ public class Top_Activity extends Activity {
 
     }
 
-    @Override
-    public void onStop()
+    /*@Override
+    protected void onPause()
     {
-        super.onStop();
+        super.onPause();
+
+    }*/
+
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
         banner_v = null;
         title_v = null;
         teaser_v = null;
@@ -136,10 +150,17 @@ public class Top_Activity extends Activity {
         stext_v = null;
         mtext_v = null;
         System.gc();
+        finish();
     }
 
+    @Override
+    protected void onDestroy()
+    {
+        Log.d("ON_DESTROY", "destroyed");
+        super.onDestroy();
+    }
 
-    //Die Bilder werden im hintergrund geladen. Wenn die Internetverbindung langsam ist, koennen die Textelemente vorher schon geladen werden.
+    /*//Die Bilder werden im hintergrund geladen. Wenn die Internetverbindung langsam ist, koennen die Textelemente vorher schon geladen werden.
     private class downloadImagesBanner extends AsyncTask<String, Void, Bitmap>{
         @Override
         protected void onPreExecute()
@@ -208,5 +229,5 @@ public class Top_Activity extends Activity {
                 ref_image_v.setImageBitmap(pic);
             }
         }
-    }
+    }*/
 }
