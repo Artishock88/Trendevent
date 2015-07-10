@@ -1,21 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:pending_card="http://schemas.android.com/apk/res-auto"
+    xmlns:livenow_card="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/pending_card"
+    android:id="@+id/livenow_card"
     android:clickable="true"
     android:elevation="2dp"
-    pending_card:cardUseCompatPadding="true"
-    android:background="@color/main_bg">
-<RelativeLayout
+    livenow_card:cardUseCompatPadding="true"
+    android:foreground="?android:attr/selectableItemBackgroundBorderless">
 
+
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="00"
+    android:id="@+id/upcount"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentStart="true"
+    android:minHeight="50dp"
+    android:minWidth="100dp"
+    android:layout_marginTop="20dp"
+    android:gravity="center_vertical|right"
+    android:background="@color/main_green"
+    android:textColor="@color/text_white"
+    android:paddingRight="5dp"
+    android:textSize="25dp"
+    android:textStyle="bold"
+    android:elevation="4dp" />
+
+<RelativeLayout
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="start|top"
-    android:id="@+id/block_layout"
-    android:elevation="0dp">
+    android:id="@+id/block_layout">
+
 
 
     <ImageButton
@@ -26,8 +45,8 @@
         android:layout_centerHorizontal="true"
         android:background="#000000"
         android:scaleType="centerCrop"
-        android:clickable="false"
-        android:elevation="2dp" />
+        android:clickable="false" />
+
 
 
     <RelativeLayout
@@ -36,17 +55,16 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/banner"
-        android:background="@color/light_green"
+        android:background="@color/main_green"
         android:id="@+id/relativeLayout"
-        android:clickable="false"
-        android:elevation="2dp">
+        android:clickable="false">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/block_title"
             android:textStyle="bold"
             android:textColor="@color/text_white"
-            android:text="Interactive Storytelling"
+            android:text="Titel"
             android:textSize="14sp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="5dp"
@@ -60,6 +78,7 @@
         android:id="@+id/block_inhalt"
         android:layout_below="@id/block_title"
         android:textSize="14sp"
+        android:layout_marginBottom="5dp"
             android:layout_marginLeft="15dp"
             android:maxWidth="245dp" />
 
@@ -71,8 +90,8 @@
             android:layout_below="@id/block_inhalt"
             android:textSize="14sp"
             android:textStyle="italic"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="15dp" />
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="5dp" />
 
     </RelativeLayout>
 
@@ -97,6 +116,7 @@
         android:layout_marginBottom="-40dp"
         android:layout_marginRight="15dp"
         android:elevation="6dp" />
+
 
 </RelativeLayout>
 </android.support.v7.widget.CardView>

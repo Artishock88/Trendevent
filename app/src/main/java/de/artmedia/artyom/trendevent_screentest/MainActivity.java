@@ -52,9 +52,6 @@ public class MainActivity extends ActionBarActivity {
 
     private Toolbar toolbar;
 
-    private TextView lade_text;
-    private View dimmer;
-
     Archive archive;
     LiveNow liveNow;
     Pending pending;
@@ -63,11 +60,6 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        lade_text = (TextView) this.findViewById(R.id.lade_text);
-        dimmer = (View) this.findViewById(R.id.dimmer);
-        lade_text.setVisibility(View.GONE);
-        dimmer.setVisibility(View.GONE);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -189,7 +181,6 @@ public class MainActivity extends ActionBarActivity {
                     pending = null;
                     String combineUrl;
                     combineUrl = "block" + String.valueOf(position) + ".php";
-                    Log.d("COMBINED_URL", combineUrl);
                     Bundle block = new Bundle();
                     block.putString("blockUrl", combineUrl);
                     pending = new Pending();

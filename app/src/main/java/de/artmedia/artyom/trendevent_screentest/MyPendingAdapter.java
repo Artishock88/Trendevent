@@ -38,7 +38,7 @@ public class MyPendingAdapter extends RecyclerView.Adapter<MyPendingAdapter.View
         ImageView block_pic;
         ImageButton block_banner;
 
-        TextView block_title, block_content, block_name, lade_text;
+        TextView block_title, block_content, block_name;
 
         public ViewHolder(View itemView, int viewType, Context c) {
             super(itemView);
@@ -68,10 +68,6 @@ public class MyPendingAdapter extends RecyclerView.Adapter<MyPendingAdapter.View
             bundle.putInt("item", id);
             i.putExtras(bundle);
 
-            TextView ploading = (TextView) v.getRootView().findViewById(R.id.lade_text);
-            ploading.setVisibility(View.VISIBLE);
-            View dimmer = (View) v.getRootView().findViewById(R.id.dimmer);
-            dimmer.setVisibility(View.VISIBLE);
 
             contxt.startActivity(i);
         }

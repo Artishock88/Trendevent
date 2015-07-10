@@ -30,8 +30,6 @@ import java.io.IOException;
  * Created by Artyom on 16.05.2015.
  */
 public class Pending extends Fragment implements View.OnClickListener{
-    private TextView lade_text;
-    private View dimmer;
 
     //Arrays fuer den Adapter
     String TITLE[];
@@ -55,10 +53,6 @@ public class Pending extends Fragment implements View.OnClickListener{
     {
         View view = inflater.inflate(R.layout.pending_layout, container, false);
 
-        lade_text = (TextView) getActivity().findViewById(R.id.lade_text);
-        dimmer = (View) getActivity().findViewById(R.id.dimmer);
-        lade_text.setVisibility(View.GONE);
-        dimmer.setVisibility(View.GONE);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -137,8 +131,6 @@ public class Pending extends Fragment implements View.OnClickListener{
     public void onStop()
     {
         super.onStop();
-        lade_text.setVisibility(View.GONE);
-        dimmer.setVisibility(View.GONE);
     }
 
     @Override

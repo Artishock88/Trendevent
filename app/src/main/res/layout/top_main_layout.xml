@@ -4,7 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_bg">
-    
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/top_lade"
+        android:layout_centerInParent="true" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,8 +53,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/title"
-                            android:text="lade..."
-                            android:textSize="16sp"
+                            android:text=""
+                            android:textSize="14sp"
                             android:textStyle="bold"
                             android:textColor="@color/text_white"
                             android:paddingLeft="5dp"
@@ -56,14 +63,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="lade..."
+                            android:text=""
                             android:id="@+id/teaser"
                             android:textColor="@color/main_green"
                             android:layout_below="@id/title"
                             android:layout_alignParentStart="true"
                             android:paddingStart="5dp"
                             android:lineSpacingMultiplier="1.2"
-                            android:textSize="15dp"
+                            android:textSize="14sp"
                             android:maxWidth="245dp" />
                         <RelativeLayout
                             android:layout_width="245dp"
@@ -79,7 +86,7 @@
                                 android:text="Referent: "
                                 android:paddingStart="5dp"
                                 android:layout_marginTop="0dp"
-                                android:textSize="15dp"
+                                android:textSize="14sp"
                                 android:layout_alignParentLeft="true"
                                 android:layout_marginLeft="0dp"
                                 android:layout_alignParentTop="true" />
@@ -88,8 +95,8 @@
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/main_green"
                                 android:id="@+id/name"
-                                android:text="lade..."
-                                android:textSize="15dp"
+                                android:text=""
+                                android:textSize="14sp"
                                 android:layout_alignParentTop="true"
                                 android:layout_toEndOf="@+id/ref" />
                         </RelativeLayout>
@@ -106,10 +113,10 @@
                                 android:id="@+id/firm_title"
                                 android:textColor="@color/text_white"
                                 android:textStyle="italic"
-                                android:text="lade..."
+                                android:text=""
                                 android:paddingStart="5dp"
                                 android:layout_marginTop="0dp"
-                                android:textSize="15dp"
+                                android:textSize="14sp"
                                 android:layout_alignParentLeft="true"
                                 android:layout_marginLeft="0dp"
                                 android:layout_alignParentTop="true" />
@@ -119,8 +126,8 @@
                                 android:textColor="@color/text_white"
                                 android:textStyle="italic"
                                 android:id="@+id/firmname"
-                                android:text="lade..."
-                                android:textSize="15dp"
+                                android:text=""
+                                android:textSize="14sp"
                                 android:paddingStart="5dp"
                                 android:layout_below="@id/firm_title" />
                         </RelativeLayout>
@@ -196,10 +203,10 @@
                         android:id="@+id/stext"
                         android:textColor="@color/main_green"
                         android:textStyle="bold"
-                        android:text="lade..."
+                        android:text=""
                         android:paddingTop="5dp"
                         android:paddingStart="5dp"
-                        android:textSize="15dp"
+                        android:textSize="14sp"
                         android:lineSpacingMultiplier="1.2"/>
 
                     <TextView
@@ -214,20 +221,11 @@
                         android:paddingStart="5dp"
                         android:paddingEnd="5dp"
                         android:layout_marginTop="0dp"
-                        android:textSize="15dp"
+                        android:textSize="14sp"
                         android:lineSpacingMultiplier="1.2"
                         android:paddingBottom="90dp" />
 
                 </RelativeLayout>
-
-                <ProgressBar
-                    style="?android:attr/progressBarStyleLarge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/top_banner_progress"
-                    android:layout_alignBottom="@+id/banner"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="75dp" />
 
 
             </RelativeLayout>
@@ -235,8 +233,6 @@
 
         
         </ScrollView>
-
-
 
 
 </RelativeLayout>

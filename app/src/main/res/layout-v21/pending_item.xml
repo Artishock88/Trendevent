@@ -8,7 +8,7 @@
     android:clickable="true"
     android:elevation="2dp"
     pending_card:cardUseCompatPadding="true"
-    android:background="@color/main_bg">
+    android:foreground="?android:attr/selectableItemBackgroundBorderless">
 <RelativeLayout
 
     android:layout_width="fill_parent"

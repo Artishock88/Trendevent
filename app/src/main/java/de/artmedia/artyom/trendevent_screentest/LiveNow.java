@@ -1,7 +1,9 @@
 package de.artmedia.artyom.trendevent_screentest;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
@@ -28,14 +30,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.net.URL;
 
 /**
  * Created by Artyom on 16.05.2015.
  */
 public class LiveNow extends Fragment{
-
-    private TextView lade_text;
-    private View dimmer;
 
     //Arrays fuer den Adapter
     String TITLE[];
@@ -54,27 +54,29 @@ public class LiveNow extends Fragment{
     RecyclerView.Adapter mBlockAdapter;
     RecyclerView.LayoutManager mBlockLayoutManager;
 
+    String urlStr = "";
+    HttpResponse response;
+    String str = "";
+
+    JSONObject json;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.live_now_layout, container, false);
 
-        lade_text = (TextView) getActivity().findViewById(R.id.lade_text);
-        dimmer = (View) getActivity().findViewById(R.id.dimmer);
-        lade_text.setVisibility(View.GONE);
-        dimmer.setVisibility(View.GONE);
-
+        mBlockView = (RecyclerView) view.findViewById(R.id.block_live);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
 
-        JSONObject json;
-        String str = "";
-        String urlStr = "";
-        HttpResponse response;
+
+
+
 
         urlStr = "http://art-tokarev.de/json/" + getArguments().getString("blockUrl");
+
+
         HttpClient myClient = new DefaultHttpClient();
         HttpPost myConnection = new HttpPost(urlStr);
 
@@ -117,7 +119,6 @@ public class LiveNow extends Fragment{
             e.printStackTrace();
         }
 
-
         context = getActivity().getApplicationContext();
 
 
@@ -132,16 +133,15 @@ public class LiveNow extends Fragment{
         mBlockLayoutManager = new LinearLayoutManager(context);
         mBlockView.setLayoutManager(mBlockLayoutManager);
 
+
+
         return view;
     }
-
 
 
     @Override
     public void onStop()
     {
         super.onStop();
-        lade_text.setVisibility(View.GONE);
-        dimmer.setVisibility(View.GONE);
     }
 }

@@ -38,7 +38,7 @@ public class MyBlockAdapter extends RecyclerView.Adapter<MyBlockAdapter.ViewHold
         Context contxt;
         ImageButton block_banner;
         ImageView block_pic;
-        TextView block_upcount, block_title, block_content, block_name, lade_text;
+        TextView block_upcount, block_title, block_content, block_name;
 
         public ViewHolder(View itemView, int viewType, Context c) {
             super(itemView);
@@ -68,11 +68,6 @@ public class MyBlockAdapter extends RecyclerView.Adapter<MyBlockAdapter.ViewHold
             bundle.putInt("item",id);
             i.putExtras(bundle);
 
-
-            TextView loading = (TextView) v.getRootView().findViewById(R.id.lade_text);
-            loading.setVisibility(View.VISIBLE);
-            View dimmer = (View) v.getRootView().findViewById(R.id.dimmer);
-            dimmer.setVisibility(View.VISIBLE);
             contxt.startActivity(i);
         }
     }
