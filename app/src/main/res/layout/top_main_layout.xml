@@ -146,7 +146,7 @@
                         android:layout_alignParentEnd="false"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="15dp"
+                        android:layout_marginRight="16dp"
                         android:outlineProvider="background"/>
 
                     <de.hdodenhof.circleimageview.CircleImageView
@@ -160,7 +160,7 @@
                         android:layout_alignParentEnd="false"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="15dp" />
+                        android:layout_marginRight="16dp" />
 
 
                 </RelativeLayout>
@@ -233,6 +233,21 @@
 
         
         </ScrollView>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_share_white_24dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            app:elevation="6dp"
+            app:pressedTranslationZ="12dp"
+            app:fabSize="normal"
+            app:borderWidth="0dp"
+            app:backgroundTint="@color/live_light_blue"
+            android:scaleType="fitCenter" />
 
 
 </RelativeLayout>

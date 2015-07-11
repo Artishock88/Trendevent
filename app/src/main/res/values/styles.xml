@@ -10,6 +10,7 @@
         <item name="colorPrimary">@color/main_color</item>
         <item name="colorPrimaryDark">@color/secondary_color</item>
         <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
 
     </style>
 

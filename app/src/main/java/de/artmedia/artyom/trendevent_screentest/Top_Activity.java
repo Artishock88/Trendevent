@@ -2,11 +2,15 @@ package de.artmedia.artyom.trendevent_screentest;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -27,8 +31,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 
 /**
  * Created by Artyom on 16.05.2015.
@@ -49,9 +55,9 @@ public class Top_Activity extends Activity {
     TextView mtext_v;
     TextView ref;
     ProgressBar top_lade;
+    FloatingActionButton fab;
     private String stringID;
     private String str;
-    private String strForJson;
     private int id;
     private int useId;
     private int jsonId;
@@ -68,6 +74,21 @@ public class Top_Activity extends Activity {
         new AsyncHttp().execute();
 
 
+    }
+
+    public void onSend()
+    {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+
+        shareIntent.setType("text/plain");
+
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, title_v.getText());
+        String shareMessage = null;
+        String shareBody = getResources().getString(R.string.shareBody);
+        shareMessage = name_v.getText() + " " + shareBody + " " + title_v.getText() + "." + "\nDas solltest du dir ansehen! http://bit.ly/1CumAYa";
+
+        shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+        startActivity(Intent.createChooser(shareIntent,"Teilen"));
     }
 
 
@@ -109,15 +130,22 @@ public class Top_Activity extends Activity {
         protected void onPostExecute(String result)
         {
             if(result != null){
-            banner_v = (ImageView) findViewById(R.id.banner);
-            title_v = (TextView) findViewById(R.id.title);
-            teaser_v = (TextView) findViewById(R.id.teaser);
-            name_v = (TextView) findViewById(R.id.name);
-            firm_title_v = (TextView) findViewById(R.id.firm_title);
-            firm_name_v = (TextView) findViewById(R.id.firmname);
-            ref_image_v = (ImageView) findViewById(R.id.ref_pic);
-            stext_v = (TextView) findViewById(R.id.stext);
-            mtext_v = (TextView) findViewById(R.id.mtext);
+                banner_v = (ImageView) findViewById(R.id.banner);
+                title_v = (TextView) findViewById(R.id.title);
+                teaser_v = (TextView) findViewById(R.id.teaser);
+                name_v = (TextView) findViewById(R.id.name);
+                firm_title_v = (TextView) findViewById(R.id.firm_title);
+                firm_name_v = (TextView) findViewById(R.id.firmname);
+                ref_image_v = (ImageView) findViewById(R.id.ref_pic);
+                stext_v = (TextView) findViewById(R.id.stext);
+                mtext_v = (TextView) findViewById(R.id.mtext);
+                fab = (FloatingActionButton) findViewById(R.id.fab);
+                fab.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        onSend();
+                    }
+                });
 
 
             try {
@@ -154,19 +182,19 @@ public class Top_Activity extends Activity {
         }
     }
 
-    @Override
+    /*@Override
     protected void onPause()
     {
         super.onPause();
         banner_v = null;
-        title_v = null;
+        //title_v = null;
         teaser_v = null;
-        name_v = null;
+        //name_v = null;
         firm_title_v = null;
         firm_name_v = null;
         ref_image_v = null;
         stext_v = null;
         mtext_v = null;
         System.gc();
-    }
+    }*/
 }
